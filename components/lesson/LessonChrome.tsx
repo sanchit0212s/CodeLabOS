@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { setCurrent } from "@/lib/progress";
 import { useProgress } from "@/lib/useProgress";
+import { useMode } from "@/lib/mode";
+import { mvpLessonSet } from "@/content/mvp-path";
 import type { FlatLesson } from "@/content/curriculum";
 import { cn } from "@/lib/cn";
 
@@ -17,17 +19,30 @@ interface LessonChromeProps {
 
 export function LessonChrome({ lesson, prev, next, estMin, children }: LessonChromeProps) {
   const progress = useProgress();
+  const [mode] = useMode();
   const mastery = progress.mastery[lesson.n];
+  const onMvp = mvpLessonSet.has(lesson.n);
 
   useEffect(() => {
+    // setCurrent is a no-op in freeplay mode (the mode check lives inside it).
     setCurrent(lesson.n);
   }, [lesson.n]);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6">
       <article>
+        {mode === "freeplay" && (
+          <div className="mb-4 panel rounded-sm border-signal-warn/40 bg-signal-warn/5 px-4 py-2.5 flex items-center gap-3">
+            <span className="h-1.5 w-1.5 rounded-full bg-signal-warn animate-pulse" />
+            <span className="text-[12.5px] text-ink-dim">
+              <strong className="text-signal-warn">Freeplay mode.</strong>{" "}
+              Read freely. Mastery scores will not save. Your story-mode
+              progress is untouched.
+            </span>
+          </div>
+        )}
         <header className="mb-8">
-          <div className="flex items-center gap-2 text-[11px] font-mono text-ink-mute uppercase tracking-widest mb-3">
+          <div className="flex items-center gap-2 text-[11px] font-mono text-ink-mute uppercase tracking-widest mb-3 flex-wrap">
             <span>phase {lesson.phaseId}</span>
             <span className="text-ink-faint">·</span>
             <span>{lesson.moduleTitle}</span>
@@ -37,6 +52,12 @@ export function LessonChrome({ lesson, prev, next, estMin, children }: LessonChr
               <>
                 <span className="text-ink-faint">·</span>
                 <span>~{estMin} min</span>
+              </>
+            )}
+            {onMvp && (
+              <>
+                <span className="text-ink-faint">·</span>
+                <span className="text-accent">on the MVP path</span>
               </>
             )}
           </div>

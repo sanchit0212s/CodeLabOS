@@ -1,6 +1,7 @@
 "use client";
 
 import type { ProgressState, MasteryRecord } from "./types";
+import { getMode } from "./mode";
 
 const STORAGE_KEY = "codelabos.progress.v1";
 
@@ -43,6 +44,9 @@ export function getProgress(): ProgressState {
 }
 
 export function setCurrent(n: number) {
+  // In Freeplay mode, navigating to lessons does not advance the official
+  // current-position pointer. Story-mode progression stays untouched.
+  if (getMode() === "freeplay") return;
   const s = loadRaw();
   s.current = n;
   bumpStreak(s);
@@ -50,6 +54,10 @@ export function setCurrent(n: number) {
 }
 
 export function recordMastery(n: number, score: number) {
+  // In Freeplay mode, taking the mastery gate does not save the score.
+  // The gate still tells the user how they did, but the official record
+  // stays untouched.
+  if (getMode() === "freeplay") return;
   const s = loadRaw();
   const prev: MasteryRecord = s.mastery[n] ?? { score: 0, lastAt: "", attempts: 0 };
   s.mastery[n] = {

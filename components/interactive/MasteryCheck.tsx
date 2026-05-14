@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { recordMastery } from "@/lib/progress";
+import { useMode } from "@/lib/mode";
 import { cn } from "@/lib/cn";
 
 export type MasteryQuestion =
@@ -42,6 +43,7 @@ type Response =
   | { kind: "fill"; value: string };
 
 export function MasteryCheck({ lessonN, questions, passAt = 0.9 }: MasteryCheckProps) {
+  const [mode] = useMode();
   const initial = useMemo<Response[]>(
     () =>
       questions.map((q) =>
@@ -80,6 +82,13 @@ export function MasteryCheck({ lessonN, questions, passAt = 0.9 }: MasteryCheckP
           </h3>
           <span className="text-[12px] font-mono text-ink-mute">{questions.length} questions</span>
         </div>
+        {mode === "freeplay" && (
+          <div className="mb-4 px-3 py-2 rounded-sm border border-signal-warn/40 bg-signal-warn/5 text-[12.5px] text-ink-dim">
+            <strong className="text-signal-warn">Freeplay:</strong> you can
+            take this gate to test yourself, but the score will NOT be saved
+            to your mastery record.
+          </div>
+        )}
 
         <ol className="space-y-6">
           {questions.map((q, i) => (
