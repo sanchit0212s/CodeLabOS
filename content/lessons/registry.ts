@@ -45,6 +45,16 @@ export const lessonRegistry: Record<string, Loader> = {
   "0/0-4/what-dependencies-are":     () => import("./phase-0/module-0-4/22-what-dependencies-are"),
   "0/0-4/what-a-build-is":           () => import("./phase-0/module-0-4/23-what-a-build-is"),
   "0/0-4/dev-staging-production":    () => import("./phase-0/module-0-4/24-dev-staging-production"),
+
+  // ── Phase 1, Module 1.1 — Git Core
+  "1/1-1/what-is-version-control":   () => import("./phase-1/module-1-1/25-what-is-version-control"),
+  "1/1-1/what-git-is":               () => import("./phase-1/module-1-1/26-what-git-is"),
+  "1/1-1/first-repo":                () => import("./phase-1/module-1-1/27-first-repo"),
+  "1/1-1/reading-git-log":           () => import("./phase-1/module-1-1/28-reading-git-log"),
+  "1/1-1/what-branches-are":         () => import("./phase-1/module-1-1/29-what-branches-are"),
+  "1/1-1/branching-workflow":        () => import("./phase-1/module-1-1/30-branching-workflow"),
+  "1/1-1/merge-conflicts":           () => import("./phase-1/module-1-1/31-merge-conflicts"),
+  "1/1-1/gitignore":                 () => import("./phase-1/module-1-1/32-gitignore"),
 };
 
 export function lessonKey(phaseId: string, moduleId: string, slug: string) {
