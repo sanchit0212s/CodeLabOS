@@ -62,6 +62,11 @@ export const lessonRegistry: Record<string, Loader> = {
   "1/1-2/what-a-pr-is":              () => import("./phase-1/module-1-2/35-what-a-pr-is"),
   "1/1-2/reading-a-pr":              () => import("./phase-1/module-1-2/36-reading-a-pr"),
   "1/1-2/github-actions-concept":    () => import("./phase-1/module-1-2/37-github-actions-concept"),
+
+  // ── Phase 2, Module 2.1 — Python Fundamentals
+  "2/2-1/why-python":                () => import("./phase-2/module-2-1/38-why-python"),
+  "2/2-1/variables-types":           () => import("./phase-2/module-2-1/39-variables-types"),
+  "2/2-1/operators":                 () => import("./phase-2/module-2-1/40-operators"),
 };
 
 export function lessonKey(phaseId: string, moduleId: string, slug: string) {

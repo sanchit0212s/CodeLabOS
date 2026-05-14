@@ -127,9 +127,9 @@ export const curriculum: PhaseRef[] = [
         title: "Python Fundamentals",
         summary: "Variables, control flow, data structures, errors, files.",
         lessons: [
-          { n: 38, slug: "why-python", title: "Why Python, where it's used, what files look like" },
-          { n: 39, slug: "variables-types", title: "Variables and data types" },
-          { n: 40, slug: "operators", title: "Operators and expressions" },
+          { n: 38, slug: "why-python", title: "Why Python, where it's used, what files look like", authored: true },
+          { n: 39, slug: "variables-types", title: "Variables and data types", authored: true },
+          { n: 40, slug: "operators", title: "Operators and expressions", authored: true },
           { n: 41, slug: "if-else", title: "If/else logic — decision making" },
           { n: 42, slug: "loops", title: "Loops — for and while" },
           { n: 43, slug: "functions", title: "Functions — reusable blocks of logic" },
