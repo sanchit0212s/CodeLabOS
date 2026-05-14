@@ -55,6 +55,13 @@ export const lessonRegistry: Record<string, Loader> = {
   "1/1-1/branching-workflow":        () => import("./phase-1/module-1-1/30-branching-workflow"),
   "1/1-1/merge-conflicts":           () => import("./phase-1/module-1-1/31-merge-conflicts"),
   "1/1-1/gitignore":                 () => import("./phase-1/module-1-1/32-gitignore"),
+
+  // ── Phase 1, Module 1.2 — GitHub
+  "1/1-2/github-vs-git":             () => import("./phase-1/module-1-2/33-github-vs-git"),
+  "1/1-2/push-pull-clone":           () => import("./phase-1/module-1-2/34-push-pull-clone"),
+  "1/1-2/what-a-pr-is":              () => import("./phase-1/module-1-2/35-what-a-pr-is"),
+  "1/1-2/reading-a-pr":              () => import("./phase-1/module-1-2/36-reading-a-pr"),
+  "1/1-2/github-actions-concept":    () => import("./phase-1/module-1-2/37-github-actions-concept"),
 };
 
 export function lessonKey(phaseId: string, moduleId: string, slug: string) {
